@@ -4,6 +4,7 @@ extends Node2D
 var highscorelabel =$"../highscore"
 
 func _ready() -> void:
+	self.position = get_viewport_rect().size/2
 	display_high_score()
 	
 

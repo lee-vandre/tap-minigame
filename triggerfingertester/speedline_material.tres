@@ -1,0 +1,19 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://cxdg4q37n670s"]
+
+[ext_resource type="Shader" path="res://speedlines.gdshader" id="1_ie1ir"]
+
+[sub_resource type="Gradient" id="Gradient_rmux4"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_525ir"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ehkv2"]
+color_ramp = SubResource("Gradient_rmux4")
+noise = SubResource("FastNoiseLite_525ir")
+
+[resource]
+shader = ExtResource("1_ie1ir")
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/sample_radius = 0.5
+shader_parameter/line_color = Vector4(1, 1, 1, 1)
+shader_parameter/center_radius = 0.051
+shader_parameter/noise = SubResource("NoiseTexture2D_ehkv2")

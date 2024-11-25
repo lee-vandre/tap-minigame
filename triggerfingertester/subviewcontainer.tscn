@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5jkbyv3og1d5"]
+
+[ext_resource type="Material" uid="uid://cxdg4q37n670s" path="res://speedline_material.tres" id="1_05um8"]
+[ext_resource type="Script" path="res://subviewcontainer.gd" id="2_od0gt"]
+
+[node name="subviewcontainer" type="SubViewportContainer"]
+material = ExtResource("1_05um8")
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1152.0
+offset_top = -648.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("2_od0gt")
+
+[node name="SubViewportContainer" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+size_2d_override_stretch = true
+render_target_update_mode = 4

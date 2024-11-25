@@ -1,2 +1,8 @@
+Thapelo,79
+Neo, 73
+Tebogo, 71
+Tshepo, 70
+Mtho, 58
+Sam, 57
 Mtho,56
-Thapelo,56
+Smiles, 56

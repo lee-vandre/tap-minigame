@@ -1,2 +1,9 @@
+AudioStreamPlayer
+SubViewport
+SubViewportContainer
+Sprite2D
+ColorRect
+WorldEnvironment
+CPUParticles2D
 Label
 Node2D

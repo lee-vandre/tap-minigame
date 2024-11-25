@@ -1,9 +1,38 @@
-[gd_scene load_steps=4 format=3 uid="uid://dwh7s1taua77i"]
+[gd_scene load_steps=15 format=3 uid="uid://dwh7s1taua77i"]
 
 [ext_resource type="Script" path="res://control.gd" id="1_4wtsm"]
 [ext_resource type="Script" path="res://node_2d.gd" id="2_ela4y"]
+[ext_resource type="AudioStream" uid="uid://c8erbwynt2g25" path="res://611113__5ro4__bell-ding-1.wav" id="3_qls8h"]
+[ext_resource type="PackedScene" uid="uid://b5jkbyv3og1d5" path="res://subviewcontainer.tscn" id="5_743qa"]
+[ext_resource type="AudioStream" uid="uid://b8ake6ft1is1i" path="res://152540__minian89__two_jet_engines-[AudioTrimmer.com].wav" id="6_3dgmw"]
+[ext_resource type="Shader" path="res://control.gdshader" id="7_5e43e"]
+
+[sub_resource type="Gradient" id="Gradient_katqf"]
+offsets = PackedFloat32Array(0, 0.97541)
+colors = PackedColorArray(0.400895, 0.866897, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_m7gf5"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8n3uo"]
+color_ramp = SubResource("Gradient_katqf")
+noise = SubResource("FastNoiseLite_m7gf5")
+
+[sub_resource type="Gradient" id="Gradient_k3kft"]
+colors = PackedColorArray(1.09738e-05, 0.668987, 0.917776, 1, 1, 1, 1, 1)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8jbs0"]
+color_ramp = SubResource("Gradient_k3kft")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nan2r"]
+shader = ExtResource("7_5e43e")
+shader_parameter/brightness = 2.5
+shader_parameter/time_scale = 1.0
+shader_parameter/noise = SubResource("NoiseTexture2D_8n3uo")
+shader_parameter/noise2 = SubResource("NoiseTexture2D_8jbs0")
 
 [sub_resource type="Theme" id="Theme_fty5g"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1bqp1"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -13,6 +42,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_4wtsm")
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("2_ela4y")
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+material = SubResource("ShaderMaterial_nan2r")
 
 [node name="shotcount" type="Label" parent="."]
 layout_mode = 1
@@ -24,18 +59,38 @@ offset_top = 1.0
 offset_bottom = -3.0
 theme = SubResource("Theme_fty5g")
 text = "0"
+label_settings = SubResource("LabelSettings_1bqp1")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
-
-[node name="Node2D" type="Node2D" parent="."]
-script = ExtResource("2_ela4y")
+wait_time = 3.0
 
 [node name="highscore" type="Label" parent="."]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="ding" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_qls8h")
+
+[node name="subviewcontainer" parent="." instance=ExtResource("5_743qa")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 1152.0
+offset_bottom = 648.0
+grow_horizontal = 1
+grow_vertical = 1
+script = null
+
+[node name="speedsound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_3dgmw")
+volume_db = -40.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
